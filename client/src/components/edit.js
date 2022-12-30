@@ -4,6 +4,7 @@ import { useParams, useNavigate } from "react-router";
 export default function Edit() {
  const [form, setForm] = useState({
    message: "",
+   description: "",
    records: [],
  });
  const params = useParams();
@@ -46,6 +47,7 @@ export default function Edit() {
    e.preventDefault();
    const editedMessage = {
      message: form.message,
+     description: form.description,
    };
  
    // This will send a post request to update the data in the database.
@@ -74,7 +76,17 @@ export default function Edit() {
            value={form.message}
            onChange={(e) => updateForm({ message: e.target.value })}
          />
-       </div>       
+       </div>
+       <div className="form-group">
+         <label htmlFor="message">Description: </label>
+         <input
+           type="text"
+           className="form-control"
+           id="description"
+           value={form.description}
+           onChange={(e) => updateForm({ description: e.target.value })}
+         />
+       </div>
        <br /> 
        <div className="form-group">
          <input

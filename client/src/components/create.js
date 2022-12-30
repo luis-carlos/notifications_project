@@ -33,7 +33,7 @@ export default function Create() {
      return;
    });
  
-   setForm({ message: "" });
+   setForm({ message: "", description: "" });
    navigate("/");
  }
  
@@ -52,6 +52,17 @@ export default function Create() {
            onChange={(e) => updateForm({ message: e.target.value })}
          />
        </div>
+       <div className="form-group">
+         <label htmlFor="message">Description</label>
+         <input
+           type="text"
+           className="form-control"
+           id="description"
+           value={form.description}
+           onChange={(e) => updateForm({ description: e.target.value })}
+         />
+       </div>
+       
        <br/>
        <div className="form-group">
          <input

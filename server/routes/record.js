@@ -41,6 +41,7 @@ recordRoutes.route("/record/add").post(function (req, response) {
  let db_connect = dbo.getDb("sample_project");
  let myobj = {
    message: req.body.message,
+   description: req.body.description,
    read: false,
  };
  db_connect
@@ -58,6 +59,7 @@ recordRoutes.route("/update/:id").post(function (req, response) {
  let newvalues = {
    $set: {
     message: req.body.message,
+    description: req.body.description,
    },
  };
  db_connect
