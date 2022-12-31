@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
  
 const Record = (props) => (
  <tr>
-   <td>{props.record.message}</td>
+   <td style={{fontWeight: props.record.read ? 'normal' : 'bold'}}>{props.record.message}</td>
    <td>
      <Link className="btn btn-link" to={`/edit/${props.record._id}`}>Edit</Link> |
      <button className="btn btn-link"
