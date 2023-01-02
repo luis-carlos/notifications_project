@@ -19,6 +19,8 @@ const Record = (props) => (
  
 export default function RecordList() {
  const [records, setRecords] = useState([]);
+ const [totalMessages, setTotalMessages] = useState(0);
+ const [totalMessagesRead, setTotalMessagesRead] = useState(0);
  
  // This method fetches the records from the database.
  useEffect(() => {
@@ -32,9 +34,12 @@ export default function RecordList() {
  
      const records = await response.json();
      setRecords(records);
-     const total = await fetch(`http://localhost:5000/read/`);
-     const totalFront = await total.json();
-     console.log(totalFront);
+     const read = await fetch(`http://localhost:5000/read/`);
+     const totalMessagesRead = await read.json();
+     setTotalMessagesRead(totalMessagesRead);
+     const total = await fetch('http://localhost:5000/total');
+     const totalMessages = await total.json();
+     setTotalMessages(totalMessages);
    }
  
    getRecords();
@@ -68,7 +73,7 @@ export default function RecordList() {
  // This following section will display the table with the records of individuals.
  return (
    <div>
-     <h3>Record List</h3>
+     <h3>Notifications List ({totalMessagesRead} unread out of {totalMessages} total)</h3>
      <table className="table table-striped" style={{ marginTop: 20 }}>
        <thead>
          <tr>
