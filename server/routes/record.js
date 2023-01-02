@@ -35,6 +35,28 @@ recordRoutes.route("/record/:id").get(function (req, res) {
      res.json(result);
    });
 });
+
+// This section will help you get the total amount of records
+recordRoutes.route("/total").get(function (req, res) {
+  let db_connect = dbo.getDb("smaple_project");
+  db_connect
+    .collection("notifications")
+    .countDocuments(function (err, count) {
+      if (err) throw err;
+      res.json(count);
+    });
+});
+
+// This section will help you get the number of read messages
+recordRoutes.route("/read").get(function (req, res) {
+  let db_connect = dbo.getDb("sample_project");
+  db_connect
+    .collection("notifications")
+    .countDocuments({read: false}, function (err, count) {
+      if (err) throw err;
+      res.json(count);
+    });
+});
  
 // This section will help you create a new record.
 recordRoutes.route("/record/add").post(function (req, response) {
