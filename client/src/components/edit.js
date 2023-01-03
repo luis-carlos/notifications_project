@@ -58,8 +58,9 @@ export default function Edit() {
        'Content-Type': 'application/json'
      },
    });
- 
+   console.log('Going to navigate');
    navigate("/");
+   console.log('Done navigating');
  }
  
  // This following section will display the form that takes input from the user to update the data.

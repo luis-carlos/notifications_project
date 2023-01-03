@@ -7,8 +7,7 @@ export default function Read() {
         description: "",
         records: [],
     });
-
-    const params = useParams;
+    const params = useParams();
     const navigate = useNavigate;
 
     useEffect(() => {
@@ -45,57 +44,58 @@ export default function Read() {
     
     async function onSubmit(e) {
         e.preventDefault();
-        const editedMessage = {
+        const readMessage = {
             read: true,
         };
 
         // This will mark the message as read
-        await fetch(`http://localhost:5000/update/${params.id}`, {
+        await fetch(`http://localhost:5000/read/${params.id}`, {
             method: "POST",
-            body: JSON.stringify(editedMessage),
-            heafer: {
+            body: JSON.stringify(readMessage),
+            headers: {
                 'Content-Type': 'application/json'
             },
         });
 
+        console.log('Going to navigate');
         navigate("/");
+        console.log('Done navigating');
     }
 
-    
+
     return (
         <div>
-     <h3>Read notification</h3>
-     <form onSubmit={onSubmit}>
-       <div className="form-group">
-         <label htmlFor="message">Message</label>
-         <input
-           type="text"
-           className="form-control"
-           id="message"
-           value={form.message}
-           onChange={(e) => updateForm({ message: e.target.value })}
-         />
-       </div>
-       <div className="form-group">
-         <label htmlFor="message">Description</label>
-         <input
-           type="text"
-           className="form-control"
-           id="description"
-           value={form.description}
-           onChange={(e) => updateForm({ description: e.target.value })}
-         />
-       </div>
-       
-       <br/>
-       <div className="form-group">
-         <input
-           type="submit"
-           value="Notifications list"
-           className="btn btn-primary"
-         />
-       </div>
-     </form>
-   </div>
+            <h3>Read notification</h3>
+            <form onSubmit={onSubmit}>
+                <div className="form-group">
+                    <label htmlFor="message">Message</label>
+                    <input
+                        type="text"
+                        className="form-control"
+                        id="message"
+                        value={form.message}
+                        onChange={(e) => updateForm({ message: e.target.value })}
+                    />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="message">Description</label>
+                    <input
+                    type="text"
+                    className="form-control"
+                    id="description"
+                    value={form.description}
+                    onChange={(e) => updateForm({ description: e.target.value })}
+                    />
+                </div>
+                <br/>
+                <div className="form-group">
+                    <input
+                    type="submit"
+                    value="Notifications list"
+                    className="btn btn-primary"
+                    />
+                </div>
+            </form>
+        </div>
     );
 }
