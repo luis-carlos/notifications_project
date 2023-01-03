@@ -74,6 +74,7 @@ export default function Read() {
                         className="form-control"
                         id="message"
                         value={form.message}
+                        disabled
                         onChange={(e) => updateForm({ message: e.target.value })}
                     />
                 </div>
@@ -84,6 +85,7 @@ export default function Read() {
                     className="form-control"
                     id="description"
                     value={form.description}
+                    disabled
                     onChange={(e) => updateForm({ description: e.target.value })}
                     />
                 </div>
