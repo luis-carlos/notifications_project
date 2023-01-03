@@ -8,7 +8,7 @@ export default function Read() {
         records: [],
     });
     const params = useParams();
-    const navigate = useNavigate;
+    const navigate = useNavigate();
 
     useEffect(() => {
         async function fetchData() {
